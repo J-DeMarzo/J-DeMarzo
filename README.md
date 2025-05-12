@@ -1,7 +1,7 @@
 <h1><a href="https://www.linkedin.com/in/j-demarzo">John DeMarzo</a></h1>
 
 <h2>About me:</h2>
-<b>Insert some cool bio here...</b>
+Highly resilient military, and public service veteran, emerging cybersecurity professional cultivating experience in defense analysis, penetration testing, and incident response. Seeking to leverage technical expertise and analytical skills to contribute to the mission as a Cybersecurity Specialist
 
 <br><h2>Current Topology</h2>
 <b>Picture coming soon... <i>(I need to learn draw.io)</i></b>
