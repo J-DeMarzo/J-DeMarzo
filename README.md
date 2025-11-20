@@ -1,14 +1,24 @@
-# Welcome, I’m John DeMarzo
+<!-- HEADER -->
+<h1 align="center">Welcome, I’m John DeMarzo</h1>
+<h3 align="center">Veteran | Aspiring System Administrator | Cybersecurity Professional</h3>
 
-**US Army and Fire Service Veteran | Aspiring System Administrator | Cybersecurity Professional**
+<p align="center">
+  <img src="https://img.shields.io/badge/CompTIA-A%2B-red?style=for-the-badge">
+  <img src="https://img.shields.io/badge/CompTIA-Network%2B-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/CompTIA-Security%2B-yellow?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Google-Cybersecurity-green?style=for-the-badge">
+</p>
 
-I’m a U.S. Army and fire service veteran transitioning into IT with a focus on **system administration, automation, security, and enterprise environments**. I enjoy building and breaking things in my home lab, documenting what I learn, and pushing myself to grow into a high-impact infrastructure engineer.
+---
 
-- 🔭 Currently building: **Windows AD lab**, **Linux automation toolkit**, **monitoring stack**
-- 🧰 Certifications: **CompTIA A+**, **Network+**, **Security+**, **Google Cybersecurity**
-- 🎓 Finishing my **Bachelor of Business** from UTSA (Spring 26)
-- 🌐 Based in **New Braunfels, TX**
-- 📫 Connect: *cv.demarzo.dev*
+## 🔧 About Me
+
+I’m a U.S. Army & fire service veteran transitioning into IT with a focus on **system administration, automation, Windows/Linux environments, and security operations**.
+
+- 🔭 Currently building: **AD Lab**, **Linux Automation Toolkit**, **Monitoring Stack**
+- 🎓 Completing my **Bachelor of Business (UTSA)**
+- 🌐 Based in New Braunfels, TX
+- 📚 Lifelong learner focused on infrastructure, cloud, and security
 
 ---
 
@@ -16,85 +26,71 @@ I’m a U.S. Army and fire service veteran transitioning into IT with a focus on
 
 | Device Name | CPU | Ram | Notes |
 |-------------|--------------|-------|-------|
-| **Lucas** | Intel i7 i855u | 32Gb | Primary compute node |
-| **Primey** | Intel i7 i855u  | 32Gb | Linux & services testing |
-| **Angel** | Intel i7 i855u  |  18Gb | Windows VM workloads |
-| **BooBoo** | Intel i7 i855u | 18Gb | Monitoring / logging stack |
+| **Lucas** | Intel i7 i8550u | 32Gb | Primary compute node |
+| **Primey** | Intel i7 i8550u  | 32Gb | Linux & services testing |
+| **Angel** | Intel i7 i8550u  |  18Gb | Windows VM workloads |
+| **BooBoo** | Intel i7 i8550u | 18Gb | Monitoring / logging stack |
 | **Lucky** | Intel N100 | 16Gb | Filestore / PBS |
 
----
-
-## 🏗️ Lab Projects (Active & Upcoming)
-
-### 🔹 **Linux Sysadmin Toolkit**
-Scripts and configurations for:
-- User & group automation  
-- Backup rotation  
-- Log cleanup  
-- Service management  
-- Permission auditing  
-
-### 🔹 **Windows Server / Active Directory Lab**
-- Domain controller setup  
-- Group Policies  
-- PowerShell automation  
-- Role-based user structure  
-- Log collection & hardening  
-
-### 🔹 **Security Hardening Guide**
-Linux & Windows security controls:
-- SSH hardening  
-- Firewall rules (UFW/Firewalld)  
-- Auditd examples  
-- Windows Defender / GPO hardening  
-
-### 🔹 **Monitoring & Logging**
-Building a home SIEM/SOAR stack using:
-- Wazuh  
-- Elastic (ELK)  
-- Grafana & Loki  
-- Sysmon forwarding  
-
-### 🔹 **Dotfiles & Environment Setup**
-My personal configurations for:
-- Bash / Zsh  
-- Vim / Neovim  
-- Aliases, functions, and quality-of-life tools  
 
 ---
 
-## 🧑‍💻 Tech Stack
+## 🧰 Tech Stack
 
 **Operating Systems:**  
-Linux (Ubuntu, Debian, CentOS/Rocky), Windows Server 2019/2022  
+Linux (Ubuntu, Debian, Rocky), Windows Server 2019/2022  
 
-**Scripting & Automation:**  
-Bash, PowerShell, Python (beginner automation)  
+**Automation & Scripting:**  
+Bash, PowerShell, Python  
 
 **Networking:**  
-DNS, DHCP, VLANs, routing, firewall rules, Wireshark  
+DNS, DHCP, VLANs, routing, Wireshark  
 
 **Security & Monitoring:**  
-Hardening, audit frameworks, logging pipelines, SIEM, Sysmon  
+Hardening, audit frameworks, Sysmon, ELK, Wazuh  
 
-**Virtualization & Infrastructure:**  
-VMs, containers, snapshots, backups, system imaging  
+**Infrastructure:**  
+VMs, snapshots, backups, virtualization, container basics  
 
 ---
 
-## 🚀 What’s Coming Next
+## 🚧 Active Projects (with repos)
 
-- Azure AZ-104 studies  
-- Ansible or Terraform basics  
-- Container-based services (Docker)  
-- More Windows GPO automation  
-- Network topology map for the full lab  
-- Step-by-step writeups of each build  
+### 🔹 [Linux Sysadmin Toolkit](#)  
+Automation scripts, backups, log rotation, permission auditing.
+
+### 🔹 [Windows AD Lab](#)  
+Domain controller, Group Policy Objects, PowerShell automation.
+
+### 🔹 [Security Hardening Guide](#)  
+Baseline hardening for Linux/Windows, firewalls, auditing.
+
+### 🔹 [Monitoring Lab](#)  
+ELK/Wazuh stack, log forwarding, Sysmon pipelines.
+
+### 🔹 [Dotfiles](#)  
+My environment configurations: shell, editor, aliases, functions.
+
+---
+
+## 🌐 Network / Lab Diagram (Placeholder)
+
+> 🖼️ Upload your diagram to `/assets/lab-diagram.png`  
+> Then replace this line with:  
+> `![Home Lab Diagram](assets/lab-diagram.png)`
+
+---
+
+## 📈 GitHub Stats
+
+<p align="center">
+  <img height="160px" src="https://github-readme-stats.vercel.app/api?username=J-DeMarzo&show_icons=true&theme=tokyonight">
+  <img height="160px" src="https://github-readme-streak-stats.herokuapp.com/?user=J-DeMarzo&theme=tokyonight">
+</p>
 
 ---
 
 ## 🤝 Let’s Connect
 
-I’m always open to collaboration, feedback, or mentorship.  
-Feel free to reach out or follow my progress!
+Feel free to reach out — I’m always open to collaboration, mentorship, and learning opportunities.
 
