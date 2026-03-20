@@ -1,0 +1,93 @@
+---
+- name: Infrastructure Bootstrap
+  hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+    - name: 1. Update and Upgrade System
+      apt:
+        update_cache: yes
+        upgrade: dist
+        cache_valid_time: 3600
+
+    - name: 2. Install Core Utility "Toolbox"
+      apt:
+        name:
+          - curl
+          - vim
+          - git
+          - tmux
+          - htop
+          - net-tools
+          - rsync
+          - qemu-guest-agent
+        state: present
+
+    - name: 3. Ensure QEMU Guest Agent is Active
+      systemd:
+        name: qemu-guest-agent
+        state: started
+        enabled: yes
+      when: ansible_virtualiztion_role=="guest"
+      ignore_errors: yes
+
+    - name: 4. Configure Local DNS (Technitium)
+      copy:
+        content: |
+          nameserver 10.12.5.5
+          nameserver 10.12.5.6
+          search int.demarzo.dev
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: 5. Set Hostname Identity
+      hostname:
+        name: "{{ inventory_hostname.split('.')[0] }}"
+      # This is the "Safety Valve": if it fails (like on LXC), 
+      # it keeps going to the next tasks anyway.
+      ignore_errors: yes 
+
+    - name: 5b. Update /etc/hosts for name resolution
+      lineinfile:
+        path: /etc/hosts
+        regexp: '^127\.0\.1\.1'
+        line: "127.0.1.1 {{ inventory_hostname }} {{ inventory_hostname.split('.')[0] }}"
+        state: present
+
+    - name: 6. Setup Passwordless Sudo for demarzo (VMs only)
+      lineinfile:
+        path: /etc/sudoers.d/demarzo
+        line: "demarzo ALL=(ALL) NOPASSWD:ALL"
+        create: yes
+        validate: '/usr/sbin/visudo -cf %s'
+      when: ansible_user == 'demarzo'
+
+    - name: 7. Apply Custom MOTD (The "DeMarzo" Welcome)
+      copy:
+        content: |
+          **********************************************************
+          * WARNING: Authorized Access Only.                       *
+          * Node: {{ inventory_hostname }} ({{ ansible_host }})    *
+          * Managed by Ansible Control Plane                       *
+          **********************************************************
+        dest: /etc/motd
+
+    - name: 8. Speed up SSH connections (Disable DNS Lookups)
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      loop:
+        - { regexp: '^#?UseDNS', line: 'UseDNS no' }
+        - { regexp: '^#?GSSAPIAuthentication', line: 'GSSAPIAuthentication no' }
+      notify: Restart SSH
+
+  handlers:
+    - name: Restart SSH
+      systemd:
+        name: ssh
+        state: restarted
