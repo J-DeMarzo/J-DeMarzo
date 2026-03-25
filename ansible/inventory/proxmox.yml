@@ -11,4 +11,3 @@ all:
         boo:   { ansible_host: 10.12.5.13 }
       standalone:
         lucky: { ansible_host: 10.12.5.14 }
-  }
