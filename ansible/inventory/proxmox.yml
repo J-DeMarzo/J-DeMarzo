@@ -1,6 +1,6 @@
 all:
   children:
-    # --- ROOT ACCESS NODES (Hardware & Core Infra) ---
+    # --- ROOT ACCESS NODES ---
     proxmox:
       vars:
         ansible_user: root
