@@ -20,7 +20,7 @@ U.S. Army veteran (13B) and fire service professional transitioning into **netwo
 
 ## Homelab Infrastructure
 
-A 5-node Proxmox cluster with a 7-VLAN segmented network managed as Infrastructure-as-Code.
+A 3-node Proxmox cluster (Asus Chromebox 3) plus a standalone Proxmox node, all on a 7-VLAN segmented network managed as Infrastructure-as-Code.
 
 ### Network Stack
 | Device | Role |
@@ -42,12 +42,22 @@ A 5-node Proxmox cluster with a 7-VLAN segmented network managed as Infrastructu
 | 45 | 10.12.45.0/24 | Isolated Lab |
 
 ### Compute Nodes
+
+**Proxmox Cluster — Asus Chromebox 3 (CN65)**
 | Node | Specs | Role |
 |------|-------|------|
-| Lucas | i7-8550U / 32GB / 1TB NVMe | Primary compute (Proxmox) |
-| Angel | i7-8550U / 32GB / 500GB NVMe | VM workloads (Proxmox) |
-| BooBoo | i7-8550U / 32GB / 500GB NVMe | Monitoring stack (Proxmox) |
-| Lucky | N100 / 16GB / 500GB NVMe + 2×6TB ZFS Mirror | Backup / filestore (PBS) |
+| Lucas | i7-8550U / 32GB / 1TB NVMe | Primary compute |
+| Angel | i7-8550U / 32GB / 500GB NVMe | VM workloads |
+| BooBoo | i7-8550U / 32GB / 500GB NVMe | Monitoring stack |
+
+**Standalone Node — Bosgame E1**
+| Node | Specs | Role |
+|------|-------|------|
+| Lucky | N100 / 16GB / 500GB NVMe + 2×6TB ZFS Mirror | Proxmox Backup Server + Admin Ops VM (`ops` 10.12.5.20) |
+
+**Desktop**
+| Node | Specs | Role |
+|------|-------|------|
 | WinDesk | N150 / 16GB / 1TB NVMe | Desktop (Windows/Ubuntu dual) |
 
 ---
@@ -55,7 +65,7 @@ A 5-node Proxmox cluster with a 7-VLAN segmented network managed as Infrastructu
 ## Automation & Monitoring
 
 **Infrastructure-as-Code (Ansible)**
-- Modular inventory: `thepack`, `infra_services`, `managed_vms`
+- Modular inventory structure for scalable group-based management
 - Bootstrap playbook: OS hardening, SSH optimization, hostname automation
 - QEMU Guest Agent deployment for Proxmox visibility
 
