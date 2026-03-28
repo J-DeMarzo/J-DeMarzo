@@ -53,7 +53,7 @@ A 3-node Proxmox cluster (Asus Chromebox 3) plus a standalone Proxmox node, all 
 **Standalone Node — Bosgame E1**
 | Node | Specs | Role |
 |------|-------|------|
-| Lucky | N100 / 16GB / 500GB NVMe + 2×6TB ZFS Mirror | Proxmox Backup Server + Admin Ops VM (`ops` 10.12.5.20) |
+| Lucky | N100 / 16GB / 500GB NVMe + 2×6TB ZFS Mirror | Proxmox Backup Server + Control Plane VM (`ops` 10.12.5.20) — Ansible, Terraform, Git |
 
 **Desktop**
 | Node | Specs | Role |
@@ -64,7 +64,8 @@ A 3-node Proxmox cluster (Asus Chromebox 3) plus a standalone Proxmox node, all 
 
 ## Automation & Monitoring
 
-**Infrastructure-as-Code (Ansible)**
+**Infrastructure-as-Code (Ansible, Terraform, Git)**
+- Dedicated control plane VM (`ops` 10.12.5.20) — single source of truth for all automation and version control
 - Modular inventory structure for scalable group-based management
 - Bootstrap playbook: OS hardening, SSH optimization, hostname automation
 - QEMU Guest Agent deployment for Proxmox visibility
