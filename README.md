@@ -1,89 +1,93 @@
-<h1 align="center">Welcome, I’m John DeMarzo</h1>
-<h3 align="center">Veteran | Aspiring System Administrator | Cybersecurity Professional</h3>
+# John DeMarzo
+### Veteran | Network & Security Operations | Cybersecurity Professional
 
-<p align="center">
-  <img src="https://img.shields.io/badge/CompTIA-A%2B-red?style=for-the-badge">
-  <img src="https://img.shields.io/badge/CompTIA-Network%2B-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/CompTIA-Security%2B-yellow?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Google-Cybersecurity-green?style=for-the-badge">
-</p>
+[![CompTIA A+](https://img.shields.io/badge/CompTIA-A%2B-red?style=for-the-badge)](https://www.comptia.org/)
+[![CompTIA Network+](https://img.shields.io/badge/CompTIA-Network%2B-blue?style=for-the-badge)](https://www.comptia.org/)
+[![CompTIA Security+](https://img.shields.io/badge/CompTIA-Security%2B-yellow?style=for-the-badge)](https://www.comptia.org/)
+[![Google Cybersecurity](https://img.shields.io/badge/Google-Cybersecurity-green?style=for-the-badge)](https://grow.google/certificates/cybersecurity/)
 
 ---
 
-## 🔧 About Me
+## About Me
 
-I’m a U.S. Army & fire service veteran transitioning into IT with a focus on **system administration, automation, Windows/Linux environments, and security operations**.
+U.S. Army veteran (13B) and fire service professional transitioning into **network and security operations**. I hold four industry certifications and am completing my **BBA in Cybersecurity at UTSA (August 2026)**. My homelab is my proving ground — I design, break, and rebuild production-grade infrastructure to develop real operational skills.
 
-- 🔭 Currently building: **Infrastructure-as-Code (Ansible)**, **AD Lab**, **Monitoring Stack**
-- 🎓 Completing my **Bachelor of Business in Cybersecurity (UTSA)**
-- 🌐 Based in New Braunfels, TX
-- 📚 Lifelong learner focused on infrastructure, cloud, and security
-
----
-
-## 🤖 Automation Engine (Ansible)
-
-The entire lab is managed as **Infrastructure-as-Code (IaC)**. I utilize a modular Ansible framework to ensure consistency, security, and rapid deployment across the cluster.
-
-- **Modular Inventory:** Organized into logical groups (`thepack`, `infra_services`, `managed_vms`) with inherited variables for global scaling.
-- **Universal Bootstrap:** A custom `bootstrap.yml` playbook that automates:
-  - OS updates and core tool deployment (`vim`, `tmux`, `git`, `htop`).
-  - **SSH Hardening & Optimization:** Eliminated connection latency by disabling `UseDNS` and `GSSAPIAuthentication`.
-  - **Intelligent Identity:** Automated hostname and `/etc/hosts` configuration with fail-safe logic for LXC container restrictions.
-- **Service Resilience:** Automated deployment of QEMU Guest Agents to ensure Proxmox-level visibility and graceful shutdowns.
+- 🎯 Targeting: **NOC Technician / SOC Analyst** roles (available May 2026)
+- 📍 New Braunfels, TX (open to remote)
+- 🎓 BBA Cybersecurity, UTSA — August 2026
 
 ---
 
-## 🖥️ Home Lab Hardware
+## Homelab Infrastructure
 
-| Device Name | CPU | RAM | Notes |
-|-------------|--------------|-------|-------|
-| **Lucas** | Intel i7 i8550u | 32GB | Primary compute node (Proxmox) |
-| **Angel** | Intel i7 i8550u  | 18GB | Windows VM workloads (Proxmox) |
-| **BooBoo** | Intel i7 i8550u | 18GB | Monitoring / logging stack (Proxmox) |
-| **Lucky** | Intel N100 | 18GB | PBS / Filestore (Bosgame E1) |
+A 5-node Proxmox cluster with a 7-VLAN segmented network managed as Infrastructure-as-Code.
 
----
+### Network Stack
+| Device | Role |
+|--------|------|
+| TP-Link OC200 | Omada SDN Controller |
+| TP-Link ER605 | Gateway / Firewall |
+| TP-Link SG2008P | PoE Switch |
+| TP-Link EAP610 | Wireless AP |
 
-## 🧰 Tech Stack
+### VLAN Architecture
+| VLAN | Subnet | Purpose |
+|------|--------|---------|
+| 5 | 10.12.5.0/24 | Management |
+| 10 | 10.12.10.0/24 | Internal |
+| 20 | 10.12.20.0/24 | IoT |
+| 30 | 10.12.30.0/24 | Internal Services |
+| 35 | 10.12.35.0/24 | DMZ |
+| 40 | 10.12.40.0/24 | Lab |
+| 45 | 10.12.45.0/24 | Isolated Lab |
 
-**Operating Systems:** Linux (Debian, Ubuntu, Rocky), Windows Server 2019/2022  
-
-**Automation & IaC:** Ansible, Terraform, Bash, PowerShell  
-
-**Networking:** Technitium DNS, VLAN Segmentation, Omada SDN, Wireshark  
-
-**Security & Monitoring:** Hardening, Audit Frameworks, Sysmon, ELK, Wazuh  
-
----
-
-## 🌐 Proxmox Lab Architecture
-
-### 1. Service Map & Management
-
-| Service | Hostname | IP | Management | Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| **Primary DNS** | `dns1` | `10.12.5.5` | **Ansible** | Technitium (LXC) |
-| **Secondary DNS**| `dns2` | `10.12.5.6` | **Ansible** | Technitium (LXC) |
-| **Backup Server**| `pbs` | `10.12.5.15` | **Ansible** | Proxmox Backup Server |
-| **Ops Station** | `ops` | `10.12.5.20` | **Ansible** | Control Plane Node |
+### Compute Nodes
+| Node | Specs | Role |
+|------|-------|------|
+| Lucas | i7-8550U / 32GB / 1TB NVMe | Primary compute (Proxmox) |
+| Angel | i7-8550U / 32GB / 500GB NVMe | VM workloads (Proxmox) |
+| BooBoo | i7-8550U / 32GB / 500GB NVMe | Monitoring stack (Proxmox) |
+| Lucky | N100 / 16GB / 500GB NVMe + 2×6TB ZFS Mirror | Backup / filestore (PBS) |
+| WinDesk | N150 / 16GB / 1TB NVMe | Desktop (Windows/Ubuntu dual) |
 
 ---
 
-## 🚧 2026 Roadmap
+## Automation & Monitoring
 
-- [x] **Phase 1: Foundation Automation** (Inventory setup, SSH optimization, and node bootstrapping).
-- [ ] **Phase 2: DNS Automation** (Automate Technitium DNS record creation via API for new VMs).
-- [ ] **Phase 3: Docker Orchestration** (Automated deployment of Docker/Portainer hosts).
-- [ ] **Phase 4: Security Hardening** (Implement Ansible Vault for secret management and automated UFW rules).
+**Infrastructure-as-Code (Ansible)**
+- Modular inventory: `thepack`, `infra_services`, `managed_vms`
+- Bootstrap playbook: OS hardening, SSH optimization, hostname automation
+- QEMU Guest Agent deployment for Proxmox visibility
 
----
-
-## 🤝 Let’s Connect
-
-Feel free to reach out — I’m always open to collaboration, mentorship, and learning opportunities.
+**Monitoring Stack**
+- Grafana dashboards for node and network health
+- Technitium DNS (redundant: `dns1` 10.12.5.5 / `dns2` 10.12.5.6)
 
 ---
 
-### **Next Step for your Diary**
-Would you like me to generate a matching `CHANGELOG.md` entry for today so you can document the exact technical hurdles you overcame (like the 25-second SSH hang and LXC hostname issues)?
+## Tech Stack
+
+**OS:** Debian, Ubuntu, Rocky Linux, Windows Server 2019/2022  
+**Automation:** Ansible, Bash, PowerShell  
+**Networking:** Omada SDN, VLAN segmentation, Technitium DNS, Wireshark  
+**Monitoring:** Grafana, Proxmox Backup Server  
+**Security Tools:** Sysmon, Wazuh, ELK (in progress)  
+**Virtualization:** Proxmox VE, LXC
+
+---
+
+## 2026 Roadmap
+
+- [x] Phase 1 — Cluster bootstrap & Ansible IaC
+- [x] Phase 2 — DNS redundancy & Grafana monitoring
+- [ ] Phase 3 — Wazuh SIEM deployment & alert tuning
+- [ ] Phase 4 — ELK log aggregation across VLANs
+- [ ] Phase 5 — Ansible Vault + UFW hardening automation
+- [ ] Phase 6 — Detection rule documentation & runbooks
+
+---
+
+## Connect
+
+Open to NOC/SOC opportunities in the San Antonio / New Braunfels area or remote.  
+Feel free to reach out for collaboration or mentorship.
