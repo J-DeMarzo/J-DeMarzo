@@ -12,7 +12,7 @@
 
 U.S. Army veteran (13B) and fire service professional transitioning into IT with a focus on system administration, automation, Windows/Linux environments. I hold four industry certifications and am completing my BBA in Cybersecurity at UTSA (August 2026). My homelab is my proving ground — I design, break, and rebuild production-grade infrastructure to develop real operational skills.
 
-- 🎯 Targeting: **NOC Technician / SOC Analyst** roles (available May 2026)
+- 🎯 Targeting: Systems Security Administrator / IT Security Analyst / SOC Analyst (available May 2026)
 - 📍 New Braunfels, TX (open to remote)
 - 🎓 BBA Cybersecurity, UTSA — August 2026
 
@@ -87,12 +87,44 @@ A 3-node Proxmox cluster (Asus Chromebox 3) plus a standalone Proxmox node, all 
 
 ## 2026 Roadmap
 
-- [x] Phase 1 — Cluster bootstrap & Ansible IaC
-- [x] Phase 2 — DNS redundancy & Grafana monitoring
-- [ ] Phase 3 — Wazuh SIEM deployment & alert tuning
-- [ ] Phase 4 — ELK log aggregation across VLANs
-- [ ] Phase 5 — Ansible Vault + UFW hardening automation
-- [ ] Phase 6 — Detection rule documentation & runbooks
+- [x] * Phase 1 — Cluster Bootstrap, Ansible IaC & DNS Redundancy
+          (Inventory, SSH hardening, QEMU agents, Technitium DNS)
+
+- [x] * Phase 2 — Security Monitoring Foundation
+          (Wazuh SIEM/XDR deployment, Sysmon integration, 
+          alert tuning, detection rule documentation)
+
+- [ ] * Phase 3 — Splunk Integration & Detection Engineering
+          (Splunk deployment, SPL query writing, brute force 
+          detection lab, ATT&CK-mapped detection runbooks)
+
+- [ ] * Phase 4 — Microsoft Security Stack
+          (Azure free tier, Microsoft Sentinel, KQL queries, 
+          Defender for Endpoint integration)
+
+- [ ] * Phase 5 — ELK Log Aggregation & Correlation
+          (Cross-VLAN log collection, Elasticsearch indexing, 
+          Kibana dashboards, Logstash pipelines)
+
+- [ ] * Phase 6 — Security Automation & Scripting
+          (Python IOC enrichment, threat intel feed aggregator, 
+          automated alerting via API, Ansible Vault secrets mgmt)
+
+- [ ] * Phase 7 — Infrastructure Hardening & Compliance
+          (UFW automation, CIS benchmarking, audit framework 
+          implementation, vulnerability scanning with OpenVAS)
+
+- [ ] * Phase 8 — Threat Intelligence Platform
+          (OpenCTI deployment, MISP integration, threat actor 
+          profiling, ATT&CK Navigator mapping)
+
+- [ ] * Phase 9 — Cloud Security Engineering
+          (AZ-500 alignment, cloud workload protection, 
+          identity & access management, Zero Trust architecture)
+
+- [ ] * Phase 10 — Advanced Detection & Red/Blue Integration
+          (Atomic Red Team simulation, purple team exercises, 
+          PCAP threat hunting, full incident response runbooks)
 
 ---
 
