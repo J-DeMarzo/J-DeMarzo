@@ -10,7 +10,7 @@
 
 ## About Me
 
-U.S. Army veteran (13B) and fire service professional transitioning into IT with a focus on system administration, automation, Windows/Linux environments. I hold four industry certifications and am completing my BBA in Cybersecurity at UTSA (August 2026). My homelab is my proving ground — I design, break, and rebuild production-grade infrastructure to develop real operational skills.
+U.S. Army veteran (13B) and fire service professional transitioning into IT. Building and operating a production-grade security monitoring infrastructure. Focused on detection engineering, infrastructure security, and security automation. Applying 20 years of military and emergency services discipline to cybersecurity operations. I hold four industry certifications and am completing my BBA in Cybersecurity at UTSA (August 2026). My homelab is my proving ground — I design, break, and rebuild production-grade infrastructure to develop real operational skills.
 
 - 🎯 Targeting: Systems Security Administrator / IT Security Analyst / SOC Analyst (available May 2026)
 - 📍 New Braunfels, TX (open to remote)
