@@ -1,5 +1,5 @@
 # John DeMarzo
-### Veteran | Network & Security Operations | Cybersecurity Professional
+### Veteran | Infrastructure Security | Detection Engineering | Wazuh · Splunk · Ansible · Proxmox
 
 [![CompTIA A+](https://img.shields.io/badge/CompTIA-A%2B-red?style=for-the-badge)](https://www.comptia.org/)
 [![CompTIA Network+](https://img.shields.io/badge/CompTIA-Network%2B-blue?style=for-the-badge)](https://www.comptia.org/)
@@ -10,7 +10,7 @@
 
 ## About Me
 
-U.S. Army veteran (13B) and fire service professional transitioning into **network and security operations**. I hold four industry certifications and am completing my **BBA in Cybersecurity at UTSA (August 2026)**. My homelab is my proving ground — I design, break, and rebuild production-grade infrastructure to develop real operational skills.
+U.S. Army veteran (13B) and fire service professional transitioning into IT with a focus on system administration, automation, Windows/Linux environments. I hold four industry certifications and am completing my BBA in Cybersecurity at UTSA (August 2026). My homelab is my proving ground — I design, break, and rebuild production-grade infrastructure to develop real operational skills.
 
 - 🎯 Targeting: **NOC Technician / SOC Analyst** roles (available May 2026)
 - 📍 New Braunfels, TX (open to remote)
@@ -77,12 +77,10 @@ A 3-node Proxmox cluster (Asus Chromebox 3) plus a standalone Proxmox node, all 
 ---
 
 ## Tech Stack
-
-**OS:** Debian, Ubuntu, Rocky Linux, Windows Server 2019/2022  
-**Automation:** Ansible, Bash, PowerShell  
-**Networking:** Omada SDN, VLAN segmentation, Technitium DNS, Wireshark  
-**Monitoring:** Grafana, Proxmox Backup Server  
-**Security Tools:** Sysmon, Wazuh, ELK (in progress)  
+**Security & Monitoring:** Wazuh, ELK, Splunk, Sysmon, Hardening, Audit Frameworks
+**Automation & IaC:** Ansible, Terraform, Bash, PowerShell  
+**Networking:** VLAN Segmentation, Omada SDN, Technitium DNS, Wireshark
+**Operating Systems:** Linux (Debian, Ubuntu, Rocky), Windows 11, 10, XP Pro, Server 2019/2022  
 **Virtualization:** Proxmox VE, LXC
 
 ---
