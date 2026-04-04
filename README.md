@@ -1,5 +1,14 @@
-# John DeMarzo | Cybersecurity & Infrastructure Portfolio
+<h1 align="center">John DeMarzo</h1>
+<h3 align="center">Veteran | Network & Security Operations | Cybersecurity Professional</h3>
 
+<p align="center">
+  <a href="https://www.credly.com/badges/2994e8d3-c6a0-483b-b1b3-507922fa8c10/public_url"><img src="https://img.shields.io/badge/CompTIA-A%2B-red?style=for-the-badge"></a>
+  <a href="https://www.credly.com/badges/f71bdb3d-4cd8-4fd5-81e6-4efbdd704292/public_url"><img src="https://img.shields.io/badge/CompTIA-Network%2B-blue?style=for-the-badge"></a>
+  <a href="https://www.credly.com/badges/78aa60bb-9f0e-4e0d-8847-e979d175db51/public_url"><img src="https://img.shields.io/badge/CompTIA-Security%2B-yellow?style=for-the-badge"></a>
+  <a href="https://coursera.org/share/4ef05f22b43db95dcc9c9742df9e6a73"><img src="https://img.shields.io/badge/Google-Cybersecurity-green?style=for-the-badge"></a>
+</p>
+
+---
 ## Overview
 This repository documents my hands-on work in cybersecurity, system administration, and infrastructure engineering. It includes homelab architecture, automation projects, and technical write-ups demonstrating real-world skills.
 
