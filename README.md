@@ -1,158 +1,108 @@
-# John DeMarzo
+# John DeMarzo | Cybersecurity & Infrastructure Portfolio
 
-### Veteran | Infrastructure Security | Detection Engineering | Wazuh · Splunk · Ansible · Proxmox
+## Overview
+This repository documents my hands-on work in cybersecurity, system administration, and infrastructure engineering. It includes homelab architecture, automation projects, and technical write-ups demonstrating real-world skills.
 
-[![CompTIA A+](https://img.shields.io/badge/CompTIA-A%2B-red?style=for-the-badge)](https://www.comptia.org/)
-[![CompTIA Network+](https://img.shields.io/badge/CompTIA-Network%2B-blue?style=for-the-badge)](https://www.comptia.org/)
-[![CompTIA Security+](https://img.shields.io/badge/CompTIA-Security%2B-yellow?style=for-the-badge)](https://www.comptia.org/)
-[![Google Cybersecurity](https://img.shields.io/badge/Google-Cybersecurity-green?style=for-the-badge)](https://grow.google/certificates/cybersecurity/)
-
----
-
-## About Me
-
-U.S. Army veteran (13B) and fire service professional building and operating 
-a production-grade security monitoring infrastructure. Focused on detection 
-engineering, infrastructure security, and security automation. Applying 20 
-years of military and emergency services discipline to cybersecurity operations.
-I hold four industry certifications and am completing my BBA in Cybersecurity 
-at UTSA (August 2026). My homelab is my proving ground — I design, break, and 
-rebuild real infrastructure to develop operational security skills.
-
-- 🎯 Targeting: Systems Security Administrator / IT Security Analyst / SOC Analyst (available May 2026)
-- 📍 New Braunfels, TX (open to remote)
-- 🎓 BBA Cybersecurity, UTSA — August 2026
+My focus is building practical experience in:
+- Network engineering and segmentation
+- Systems administration (Windows/Linux)
+- Infrastructure as Code (Terraform, Ansible)
+- Security monitoring and log analysis
+- Homelab design and deployment
 
 ---
 
-## 🔐 Security Projects
+## Core Skills
 
-| Project | Tools | Status |
-|---|---|---|
-| Wazuh SIEM/XDR Deployment & Detection Rules | Wazuh, Sysmon, ELK | 🔄 Documenting |
-| Brute Force Detection Lab | Splunk, Kali, SPL | 🔜 In Progress |
-| IOC Enrichment Automation | Python, VirusTotal API, AbuseIPDB | 🔜 Planned |
-| ATT&CK-Mapped Detection Runbook | MITRE ATT&CK, Atomic Red Team | 🔜 Planned |
-| Network Threat Hunt | Wireshark, Zeek, Suricata | 🔜 Planned |
+**Infrastructure & Systems**
+- Proxmox virtualization
+- Linux & Windows administration
+- Active Directory fundamentals
+- Storage and backup systems
 
----
+**Networking**
+- VLAN design and segmentation
+- Firewall rules and ACLs
+- DNS architecture and management
+- Omada network configuration
 
-## 🖥️ Homelab Infrastructure
+**Automation**
+- Ansible (configuration management)
+- Terraform (infrastructure provisioning)
 
-A 3-node Proxmox cluster plus a standalone node, all on a 7-VLAN segmented 
-network managed as Infrastructure-as-Code.
-
-### Network Stack
-
-| Device | Role |
-|---|---|
-| TP-Link OC200 | Omada SDN Controller |
-| TP-Link ER605 | Gateway / Firewall |
-| TP-Link SG2008P | PoE Switch |
-| TP-Link EAP610 | Wireless AP |
-
-### VLAN Architecture
-
-| VLAN | Subnet | Purpose |
-|---|---|---|
-| 5 | 10.12.5.0/24 | Management |
-| 10 | 10.12.10.0/24 | Internal |
-| 20 | 10.12.20.0/24 | IoT |
-| 30 | 10.12.30.0/24 | Internal Services |
-| 35 | 10.12.35.0/24 | DMZ |
-| 40 | 10.12.40.0/24 | Lab |
-| 45 | 10.12.45.0/24 | Isolated Lab |
-
-### Compute Nodes
-
-**Proxmox Cluster — Asus Chromebox 3 (CN65)**
-
-| Node | Specs | Role |
-|---|---|---|
-| Lucas | i7-8550U / 32GB / 1TB NVMe | Primary compute |
-| Angel | i7-8550U / 32GB / 500GB NVMe | VM workloads |
-| BooBoo | i7-8550U / 32GB / 500GB NVMe | Monitoring stack |
-
-**Standalone Node — Bosgame E1**
-
-| Node | Specs | Role |
-|---|---|---|
-| Lucky | N100 / 16GB / 500GB NVMe + 2×6TB ZFS Mirror | PBS + Control Plane (`ops` 10.12.5.20) |
-
-**Desktop**
-
-| Node | Specs | Role |
-|---|---|---|
-| WinDesk | N150 / 16GB / 1TB NVMe | Desktop (Windows/Ubuntu dual-boot) |
+**Security**
+- Log forwarding and analysis
+- SIEM preparation and architecture
+- System hardening concepts
 
 ---
 
-## 🤖 Automation & Monitoring
+## Homelab
 
-**Infrastructure-as-Code (Ansible, Terraform, Git)**
+Documentation of my full lab environment, including network design, infrastructure, and deployed services.
 
-- Dedicated control plane VM (`ops` 10.12.5.20) — single source of truth for 
-  all automation and version control
-- Modular inventory structure for scalable group-based management
-- Bootstrap playbook: OS hardening, SSH optimization, hostname automation
-- QEMU Guest Agent deployment for Proxmox visibility
-
-**Monitoring Stack**
-
-- Grafana dashboards for node and network health
-- Technitium DNS — redundant (`dns1` 10.12.5.5 / `dns2` 10.12.5.6)
+- [Homelab Overview](./homelab/README.md)
+- [Network Design](./homelab/network/vlan-design.md)
+- [Proxmox Cluster](./homelab/infrastructure/proxmox-cluster.md)
+- [Technitium DNS Deployment](./homelab/infrastructure/dns-technitium.md)
 
 ---
 
-## 🧰 Tech Stack
+## Featured Projects
 
-**Security & Monitoring:** Wazuh, ELK, Splunk, Sysmon, Hardening, Audit Frameworks  
-**Automation & IaC:** Ansible, Terraform, Bash, PowerShell  
-**Networking:** VLAN Segmentation, Omada SDN, Technitium DNS, Wireshark  
-**Operating Systems:** Linux (Debian, Ubuntu, Rocky), Windows Server 2019/2022  
-**Virtualization:** Proxmox VE, LXC  
+Detailed breakdowns of hands-on builds and implementations.
 
----
+- [Ansible Automation](./project-pages/ansible-automation.md)
+- [Terraform Infrastructure](./project-pages/terraform-infrastructure.md)
+- [SIEM Roadmap](./project-pages/siem-roadmap.md)
 
-## 🚧 2026 Roadmap
-
-- **Phase 1** — Cluster Bootstrap & Ansible IaC ✅  
-  Inventory setup, SSH hardening, node bootstrapping, QEMU agents
-
-- **Phase 2** — DNS Redundancy & Grafana Monitoring ✅  
-  Technitium DNS automation, Grafana dashboards, infrastructure visibility
-
-- **Phase 3** — Wazuh SIEM/XDR & Detection Engineering 🔄  
-  Wazuh deployment, Sysmon integration, alert tuning, detection rule documentation
-
-- **Phase 4** — Splunk Integration & Detection Lab  
-  Splunk deployment, SPL query writing, brute force detection, ATT&CK-mapped runbooks
-
-- **Phase 5** — Microsoft Security Stack  
-  Azure free tier, Microsoft Sentinel, KQL queries, Defender for Endpoint integration
-
-- **Phase 6** — ELK Log Aggregation & Correlation  
-  Cross-VLAN log collection, Elasticsearch indexing, Kibana dashboards, Logstash pipelines
-
-- **Phase 7** — Security Automation & Scripting  
-  Python IOC enrichment, threat intel feed aggregator, automated alerting via API, 
-  Ansible Vault secrets management
-
-- **Phase 8** — Infrastructure Hardening & Compliance  
-  UFW automation, CIS benchmarking, audit framework implementation, 
-  vulnerability scanning with OpenVAS
-
-- **Phase 9** — Threat Intelligence Platform  
-  OpenCTI deployment, MISP integration, threat actor profiling, ATT&CK Navigator mapping
-
-- **Phase 10** — Advanced Detection & Red/Blue Integration  
-  Atomic Red Team simulation, purple team exercises, PCAP threat hunting, 
-  full incident response runbooks
+Additional project repositories:
+- Homelab Ansible (external repo)
+- Homelab Terraform (external repo)
 
 ---
 
-## 🤝 Connect
+## Technical Write-Ups
 
-Open to Systems Security Administrator, IT Security Analyst, and SOC Analyst 
-opportunities in the San Antonio / New Braunfels area or remote.  
-Feel free to reach out for collaboration or mentorship.
+### Lab Work
+- [DNS Migration](./write-ups/lab/dns-migration.md)
+- [Reverse Proxy Setup](./write-ups/lab/reverse-proxy.md)
+- [Windows Log Forwarding](./write-ups/lab/windows-log-forwarding.md)
+
+### Academic (UTSA)
+- [UTSA Write-Ups](./write-ups/utsa/README.md)
+
+### Production-Style Scenarios
+- [Incident Response Example](./write-ups/production/incident-response-example.md)
+
+---
+
+## Current Focus
+
+- Building a stable reverse proxy layer for lab services
+- Preparing SIEM deployment with centralized logging
+- Expanding automation using Ansible and Terraform
+- Enhancing network segmentation and security controls
+
+---
+
+## Certifications
+
+- CompTIA A+
+- CompTIA Network+
+- CompTIA Security+
+- Google Cybersecurity Certificate
+
+---
+
+## Goals
+
+- Transition into a technical cybersecurity role (SOC → Security Engineering)
+- Continue building real-world infrastructure and security projects
+- Develop automation-first deployment workflows
+
+---
+
+## Contact
+
+GitHub: https://github.com/j-demarzo
