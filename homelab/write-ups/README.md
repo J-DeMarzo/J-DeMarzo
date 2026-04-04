@@ -4,7 +4,7 @@ Detailed deployment documentation for homelab projects. Each write-up covers arc
 
 | Write-Up | Description | Status |
 |----------|-------------|--------|
-| [Splunk Enterprise SIEM Deployment]('./homelab/write-ups/internal-projects/splunk') | Network-isolated Splunk install on VLAN 50, Universal Forwarder bootstrap integration, Linux log ingestion | Complete |
+| [Splunk Enterprise SIEM Deployment]('./homelab/write-ups/homelab/splunk') | Network-isolated Splunk install on VLAN 50, Universal Forwarder bootstrap integration, Linux log ingestion | Complete |
 
 ---
 
