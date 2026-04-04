@@ -43,7 +43,7 @@ Documentation of my full lab environment, including network design, infrastructu
 
 - [Homelab Overview](./homelab/README.md)
 - [Network Design](./homelab/network/vlan-design.md)
-- [Proxmox Cluster](./homelab/netowrk/proxmox-cluster.md)
+- [Proxmox Cluster](./homelab/network/proxmox-cluster.md)
 - [Technitium DNS Deployment](./homelab/infrastructure/dns-technitium.md)
 
 ---
