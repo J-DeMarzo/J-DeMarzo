@@ -1,12 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>John DeMarzo | Cyber Portfolio</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #7dd3fc;
+      margin-top: 40px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background-color: #1e293b;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #94a3b8;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>John DeMarzo | Cyber Portfolio</h1>
-  <p>This site is under active development.</p>
-  <p><a href="https://github.com/J-DeMarzo/cyber-portfolio">View full portfolio on GitHub</a></p>
+  <div class="container">
+
+    <h1>John DeMarzo</h1>
+    <p>
+      Cybersecurity-focused infrastructure builder with hands-on experience in virtualization, network segmentation, DNS architecture, and monitoring. 
+      Actively developing a production-style homelab to simulate real-world environments and security workflows.
+    </p>
+
+    <h2>Core Focus</h2>
+    <ul>
+      <li>Proxmox virtualization and infrastructure design</li>
+      <li>VLAN segmentation and network security</li>
+      <li>DNS architecture (Technitium)</li>
+      <li>Monitoring and SIEM preparation</li>
+      <li>Infrastructure as Code (Terraform & Ansible)</li>
+    </ul>
+
+    <h2>Featured Projects</h2>
+
+    <div class="card">
+      <strong>Proxmox Cluster Architecture</strong><br>
+      Multi-node cluster with role-based workload separation, ZFS storage, and external backup using PBS.
+      <br>
+      <a href="https://github.com/J-DeMarzo/cyber-portfolio/tree/main/homelab/infrastructure">View Project</a>
+    </div>
+
+    <div class="card">
+      <strong>VLAN Segmentation Design</strong><br>
+      Multi-network architecture separating management, internal, IoT, services, lab, and security environments.
+      <br>
+      <a href="https://github.com/J-DeMarzo/cyber-portfolio/tree/main/homelab/network">View Project</a>
+    </div>
+
+    <div class="card">
+      <strong>Technitium DNS Deployment (Rebuild in Progress)</strong><br>
+      Dual-instance DNS with internal domain and planned Terraform + Ansible automation.
+      <br>
+      <a href="https://github.com/J-DeMarzo/cyber-portfolio/tree/main/write-ups/lab">View Write-Up</a>
+    </div>
+
+    <h2>Homelab Overview</h2>
+    <p>
+      The lab is built around a segmented network (10.12.x.0/24) with dedicated VLANs for management, services, IoT, lab environments, and security tooling.
+      A Proxmox cluster provides virtualization, with separate nodes for infrastructure, monitoring, and isolated lab workloads.
+    </p>
+
+    <h2>Certifications</h2>
+    <ul>
+      <li>CompTIA A+</li>
+      <li>CompTIA Network+</li>
+      <li>CompTIA Security+</li>
+      <li>Google Cybersecurity Certificate</li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://github.com/J-DeMarzo">GitHub Profile</a></li>
+      <li><a href="https://github.com/J-DeMarzo/cyber-portfolio">Full Portfolio Repository</a></li>
+    </ul>
+
+    <div class="footer">
+      <p>Built and maintained as part of ongoing cybersecurity and infrastructure development.</p>
+    </div>
+
+  </div>
 </body>
 </html>
