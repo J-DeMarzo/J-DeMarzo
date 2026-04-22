@@ -1,4 +1,3 @@
-
 # Splunk Enterprise SIEM Deployment
 ### Homelab Security Operations — Phase 3
 
@@ -8,7 +7,6 @@
 
 This document covers the end-to-end deployment of a Splunk Enterprise SIEM on a dedicated, network-isolated VM in my homelab. The goal was to mirror enterprise security architecture: isolated network segment, firewall-enforced access control, log ingestion from multiple sources, and infrastructure-as-code integration via Ansible.
 
-**Index name:** `the_kennel`  
 **Deployment date:** March 2026  
 **Splunk version:** 10.2.2
 
@@ -43,6 +41,25 @@ This ensures Universal Forwarders on any VLAN can ship logs, but the Splunk Web 
 
 ---
 
+## Index Configuration
+
+Rather than a single catch-all index, logs are separated by OS and data type for cleaner searching, targeted retention policies, and role-based access alignment.
+
+| Index | Data Source | Status |
+|-------|-------------|--------|
+| `net_flow` | Network flow telemetry (Omada SDN / NetFlow) | ✅ Active |
+| `windows_sec` | Windows Security event logs | ✅ Active |
+| `windows_sys` | Windows System event logs | ✅ Active |
+| `windows_app` | Windows Application event logs | ✅ Active |
+| `linux_sec` | Linux auth/security logs (`/var/log/auth.log`, `secure`) | ✅ Active |
+| `linux_sys` | Linux system logs (`syslog`, `messages`) | ✅ Active |
+| `linux_app` | Linux application logs | ✅ Active |
+| `proxmox` | Proxmox VE node logs | ✅ Active |
+
+All indexes were created via `Settings → Indexes → New Index` in Splunk Web. Receiver on port `9997` was enabled via `Settings → Forwarding and Receiving → Configure Receiving`.
+
+---
+
 ## Splunk Enterprise Installation
 
 Splunk Enterprise was installed manually from the official `.deb` package. Running Splunk as root is deprecated in 10.x, so a dedicated system user was created first.
@@ -67,102 +84,19 @@ sudo /opt/splunk/bin/splunk enable boot-start -user splunk \
 sudo systemctl start splunk
 ```
 
-### Initial Configuration
-
-After installation, the following were configured via Splunk Web (`http://10.12.50.10:8000`):
-
-1. **Created index `the_kennel`** — `Settings → Indexes → New Index`
-2. **Enabled receiver on port 9997** — `Settings → Forwarding and Receiving → Configure Receiving → New Receiving Port → 9997`
-
 ---
 
 ## Universal Forwarder Deployment
 
-The Universal Forwarder deployment was integrated into the infrastructure bootstrap Ansible playbook, ensuring every VM provisioned into the homelab automatically ships logs to Splunk. This mirrors enterprise endpoint onboarding practices.
+Universal Forwarders are deployed on all nodes with `outputs.conf` pointing to `10.12.50.10:9997`. Each node's `inputs.conf` routes logs to the appropriate index based on source type.
 
-### Key design decisions
+### Proxmox Node Forwarding
 
-- A dedicated `splunkfwd` system user owns the forwarder process (no root execution)
-- `rsyslog` is installed to ensure `/var/log/auth.log` and `/var/log/syslog` exist (Ubuntu/Debian 22.04+ uses `journald` only by default)
-- UFW allows outbound 9997/TCP for log forwarding
+All four Proxmox nodes (Lucas, Angel, BooBoo, Lucky) are configured with Universal Forwarders shipping to the `proxmox` index. Each node's `inputs.conf` targets Proxmox-specific log paths.
 
-### Bootstrap playbook tasks (Section 15)
+### rsyslog Requirement
 
-```yaml
-- name: 15a. Download Splunk Universal Forwarder
-  get_url:
-    url: "https://download.splunk.com/products/universalforwarder/releases/10.2.2/linux/splunkforwarder-10.2.2-80b90d638de6-linux-amd64.deb"
-    dest: /tmp/splunkuf.deb
-
-- name: 15b. Install Splunk Universal Forwarder
-  apt:
-    deb: /tmp/splunkuf.deb
-
-- name: 15c. Create splunkfwd user
-  user:
-    name: splunkfwd
-    system: yes
-    shell: /bin/false
-    create_home: no
-
-- name: 15d. Set ownership
-  file:
-    path: /opt/splunkforwarder
-    owner: splunkfwd
-    group: splunkfwd
-    recurse: yes
-
-- name: 15e. Configure outputs to Splunk indexer
-  copy:
-    content: |
-      [tcpout]
-      defaultGroup = homelab_indexer
-
-      [tcpout:homelab_indexer]
-      server = 10.12.50.10:9997
-    dest: /opt/splunkforwarder/etc/system/local/outputs.conf
-    owner: splunkfwd
-    group: splunkfwd
-
-- name: 15f. Configure Linux log inputs
-  copy:
-    content: |
-      [monitor:///var/log/auth.log]
-      index = the_kennel
-      sourcetype = linux_secure
-
-      [monitor:///var/log/syslog]
-      index = the_kennel
-      sourcetype = syslog
-    dest: /opt/splunkforwarder/etc/system/local/inputs.conf
-    owner: splunkfwd
-    group: splunkfwd
-
-- name: 15g. Enable boot-start and start UF
-  command: >
-    /opt/splunkforwarder/bin/splunk enable boot-start
-    -user splunkfwd --accept-license --answer-yes
-    --seed-passwd '<your_password>'
-  args:
-    creates: /etc/init.d/SplunkForwarder
-
-- name: 15h. Allow UF outbound in UFW
-  ufw:
-    rule: allow
-    port: '9997'
-    proto: tcp
-    direction: out
-
-- name: 15i. Start Splunk UF
-  systemd:
-    name: SplunkForwarder
-    state: started
-    enabled: yes
-```
-
-### rsyslog requirement
-
-Ubuntu/Debian 22.04+ ships with `journald` only — `/var/log/auth.log` and `/var/log/syslog` do not exist without `rsyslog`. This was added to the bootstrap playbook core packages section:
+Ubuntu/Debian 22.04+ ships with `journald` only — `/var/log/auth.log` and `/var/log/syslog` do not exist without `rsyslog`:
 
 ```bash
 sudo apt install rsyslog -y && sudo systemctl enable rsyslog --now
@@ -172,7 +106,7 @@ sudo apt install rsyslog -y && sudo systemctl enable rsyslog --now
 
 ## Verification
 
-### Confirm forwarder connectivity (on source host)
+### Confirm Forwarder Connectivity (on source host)
 
 ```bash
 sudo /opt/splunkforwarder/bin/splunk list forward-server
@@ -186,13 +120,16 @@ Configured but inactive forwards:
     None
 ```
 
-### Confirm data in Splunk
+### Confirm Data per Index
 
 ```spl
-index=the_kennel | head 20
+index=proxmox | head 20
+index=net_flow | head 20
+index=windows_sec | head 20
+index=linux_sec | head 20
 ```
 
-First confirmed log sources: `ops` (10.12.5.20) shipping `/var/log/syslog` and `/var/log/auth.log`.
+First confirmed log sources: `ops` (10.12.5.20) shipping `/var/log/syslog` and `/var/log/auth.log`. Proxmox nodes, net_flow, and Windows indexes subsequently confirmed active.
 
 ---
 
@@ -209,8 +146,10 @@ First confirmed log sources: `ops` (10.12.5.20) shipping `/var/log/syslog` and `
 ## Next Steps
 
 - [ ] Windows Universal Forwarder + Sysmon (SwiftOnSecurity config)
-- [ ] Windows Security / System / Application event log ingestion
 - [ ] Security dashboard — failed logins, top event IDs, auth activity over time, top source IPs
+- [ ] Retention policy configuration (`maxTotalDataSizeMB`, `frozenTimePeriodInSecs`) per index
+- [ ] Wazuh → Splunk forwarding pipeline for correlated alert data
+- [ ] HEC (HTTP Event Collector) for app-level log ingestion
 - [ ] Onboard remaining homelab VMs via bootstrap playbook
 
 ---
